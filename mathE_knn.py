@@ -25,7 +25,7 @@ df = df.drop('Question ID', axis=1)
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 #transformation en tableau de valeurs
-data=df.values
+
 #frequency encoding sur l'attribut student country
 #prétraitement des données
 #application du frequency encoding of student country
@@ -50,20 +50,4 @@ df['Topic']=df['Topic'].map(freq_topic/df.shape[0])
 freq_subtopic=df['Subtopic'].value_counts()
 df['Subtopic']=df['Subtopic'].map(freq_subtopic/df.shape[0])
 
-#séparation des données
-X = df.drop('Type of Answer', axis=1)
-y = df['Type of Answer']
 
-# Diviser les données en ensemble d'entraînement et de test
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
-random_state=42)
-# Normalisation des caractéristiques
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
-# Création du modèle KNN
-knn = KNeighborsClassifier(n_neighbors=6)
-# Entraîner le modèle
-knn.fit(X_train, y_train)
-# Prédire les classes de l'ensemble de test
-y_pred = knn.predict(X_test)
