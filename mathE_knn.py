@@ -48,4 +48,9 @@ st.pyplot(fig_scatter)
 #application du frequency encoding of student country
 freq=df['Student Country'].value_counts()
 df['Student Country']=df['Student Country'].map(freq/df.shape[0])
-
+#application du frequency encoding of Topic
+freq2=df['Topic'].value_counts()
+df['Topic']=df['Topic'].map(freq2/df.shape[0])
+#application du frequency encoding of Subtopic
+freq2=df['Topic'].value_counts()
+df['Topic']=df['Topic'].map(freq2/df.shape[0])
