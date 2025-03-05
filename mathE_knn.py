@@ -17,7 +17,7 @@ middle.write('Dataset mathE')
 
 df=pd.read_csv("mathE-data.csv",sep=";", encoding='cp1252')
 #suppression de la colonne Keywords
-#df = df.drop('Keywords', axis=1)
+df = df.drop('Keywords', axis=1)
 df = df.drop('Student ID', axis=1)
 df = df.drop('Question ID', axis=1)
 
@@ -49,5 +49,3 @@ df['Topic']=df['Topic'].map(freq_topic/df.shape[0])
 freq_subtopic=df['Subtopic'].value_counts()
 df['Subtopic']=df['Subtopic'].map(freq_subtopic/df.shape[0])
 #frequency encoding de l'attribut keyword
-freq_keywords=df['Keywords'].value_counts()
-df['Keywords']=df['Keywords'].map(freq_keywords/df.shape[0])
