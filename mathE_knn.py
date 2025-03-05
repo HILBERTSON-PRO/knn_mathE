@@ -20,3 +20,34 @@ df=pd.read_csv("mathE-data.csv",sep=";", encoding='cp1252')
 #df = df.drop('Keywords', axis=1)
 df = df.drop('Student ID', axis=1)
 df = df.drop('Question ID', axis=1)
+
+#prétraitement des données
+#ignorer les notifiation d'erreurs
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+#frequency encoding sur l'attribut student country
+#prétraitement des données
+#application du frequency encoding of student country
+
+freq_country=df['Student Country'].value_counts()
+df['Student Country']=df['Student Country'].map(freq_country/df.shape[0])
+#label encoding de l'attribut Question Level
+for level in range(len(df['Question Level'])):
+    match df['Question Level'][level]:
+        case "Basic":
+            df['Question Level'][level]=0
+        case "Advanced":
+            df['Question Level'][level]=1
+
+#suppression de la colonne keywords
+#df=df.drop("Keywords", axis=1)
+#frequency encoding sur l'attribut 
+freq_topic=df['Topic'].value_counts()
+df['Topic']=df['Topic'].map(freq_topic/df.shape[0])
+
+#frequency encoding de l'attribut Subtopic
+freq_subtopic=df['Subtopic'].value_counts()
+df['Subtopic']=df['Subtopic'].map(freq_subtopic/df.shape[0])
+#frequency encoding de l'attribut keyword
+freq_keywords=df['Keywords'].value_counts()
+df['Keywords']=df['Keywords'].map(freq_keywords/df.shape[0])
