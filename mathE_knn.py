@@ -17,9 +17,9 @@ middle.write('Dataset mathE')
 
 df=pd.read_csv("mathE-data.csv",sep=";", encoding='cp1252')
 #suppression de la colonne Keywords
-df = df.drop('Keywords', axis=1)
 df = df.drop('Student ID', axis=1)
 df = df.drop('Question ID', axis=1)
+df = df.drop('Keywords', axis=1)
 
 #prétraitement des données
 #ignorer les notifiation d'erreurs
