@@ -14,38 +14,35 @@ st.title("visualisation et prédiction des types de reponse")
 left_column,middle,right_column = st.columns(3)
 left_column.button('Visualisation')
 middle.write('Dataset mathE')
-
+#chargement des données
 df=pd.read_csv("mathE-data.csv",sep=";", encoding='cp1252')
 #suppression de la colonne Keywords
 df = df.drop('Student ID', axis=1)
 df = df.drop('Question ID', axis=1)
 df = df.drop('Keywords', axis=1)
+# Titre de l'application
+st.title("Visualisation des données MathE")
 
-#prétraitement des données
-#ignorer les notifiation d'erreurs
-import warnings
-warnings.simplefilter(action='ignore', category=FutureWarning)
-#frequency encoding sur l'attribut student country
-#prétraitement des données
-#application du frequency encoding of student country
+# Afficher le tableau de données
+st.subheader("Tableau de données")
+st.dataframe(df)
 
-freq_country=df['Student Country'].value_counts()
-df['Student Country']=df['Student Country'].map(freq_country/df.shape[0])
-#label encoding de l'attribut Question Level
-for level in range(len(df['Question Level'])):
-    match df['Question Level'][level]:
-        case "Basic":
-            df['Question Level'][level]=0
-        case "Advanced":
-            df['Question Level'][level]=1
+# Statistiques descriptives
+st.subheader("Statistiques descriptives")
+st.write(df.describe())
 
-#suppression de la colonne keywords
-#df=df.drop("Keywords", axis=1)
-#frequency encoding sur l'attribut 
-freq_topic=df['Topic'].value_counts()
-df['Topic']=df['Topic'].map(freq_topic/df.shape[0])
+# Histogramme
+st.subheader("Histogramme des pays")
+fig_hist, ax_hist = plt.subplots()
+ax_hist.hist(df['Student Country'], bins=20)
+st.pyplot(fig_hist)
 
-#frequency encoding de l'attribut Subtopic
-freq_subtopic=df['Subtopic'].value_counts()
-df['Subtopic']=df['Subtopic'].map(freq_subtopic/df.shape[0])
-#frequency encoding de l'attribut keyword
+# Graphique de dispersion
+st.subheader("Graphique de dispersion Student Country vs Question Level")
+fig_scatter, ax_scatter = plt.subplots()
+ax_scatter.scatter(data['Student Country'], data['Question Level'])
+ax_scatter.set_xlabel("Student Country")
+ax_scatter.set_ylabel("Question Level")
+st.pyplot(fig_scatter)
+
+
