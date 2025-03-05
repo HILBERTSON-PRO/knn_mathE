@@ -39,7 +39,7 @@ st.pyplot(fig_hist)
 # Graphique de dispersion
 st.subheader("Graphique de dispersion Student Country vs Question Level")
 fig_scatter, ax_scatter = plt.subplots()
-ax_scatter.scatter(df['Student Country'], data['Question Level'])
+ax_scatter.scatter(df['Student Country'], df['Question Level'])
 ax_scatter.set_xlabel("Student Country")
 ax_scatter.set_ylabel("Question Level")
 st.pyplot(fig_scatter)
