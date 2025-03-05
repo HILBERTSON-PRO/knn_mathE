@@ -44,4 +44,8 @@ ax_scatter.set_xlabel("Student Country")
 ax_scatter.set_ylabel("Question Level")
 st.pyplot(fig_scatter)
 
+#prétaitement des données
+#application du frequency encoding of student country
+freq=df['Student Country'].value_counts()
+df['Student Country']=df['Student Country'].map(freq/df.shape[0])
 
