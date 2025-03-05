@@ -15,4 +15,8 @@ left_column,middle,right_column = st.columns(3)
 left_column.button('Visualisation')
 middle.write('Dataset mathE')
 
-
+df=pd.read_csv("mathE_knn.csv",sep=";", encoding='cp1252')
+#suppression de la colonne Keywords
+#df = df.drop('Keywords', axis=1)
+df = df.drop('Student ID', axis=1)
+df = df.drop('Question ID', axis=1)
