@@ -17,9 +17,8 @@ middle.write('Dataset mathE')
 #chargement des données
 df=pd.read_csv("mathE-data.csv",sep=";", encoding='cp1252')
 #suppression de la colonne Keywords
-df = df.drop('Student ID', axis=1)
-df = df.drop('Question ID', axis=1)
-df = df.drop('Keywords', axis=1)
+#df = df.drop('Student ID', axis=1)
+
 # Titre de l'application
 st.title("Visualisation des données MathE")
 
